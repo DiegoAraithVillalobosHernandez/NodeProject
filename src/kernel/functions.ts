@@ -10,4 +10,11 @@ export async function hash(password: string) {
   });
 }
 
-export async function compare(params) {}
+export async function compare(password: string, hash: string) {
+  return new Promise((resolve, reject) => {
+    bcryptjs.compare(password, hash, (err, result) => {
+      if (err) reject(err);
+      resolve(result);
+    });
+  });
+}
